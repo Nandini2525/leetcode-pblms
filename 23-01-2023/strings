@@ -1,0 +1,43 @@
+Longest Substring Without Repeating Characters
+
+** Given a string s, find the length of the longest 
+substring without repeating characters.
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        HashSet<Character> hs=new HashSet<>();
+        int x=0;
+        int y=0;
+        int k=0;
+        while(y<s.length()){
+            char h=s.charAt(y);
+            if(!hs.contains(h)){
+                y++;
+                hs.add(h);
+                k=Math.max(hs.size(),k);
+            }
+            else{
+                char p=s.charAt(x);
+                hs.remove(p);
+                x++;
+            }
+        }return k;        
+    }
+}
+
+** First Unique Character in a String
+
+Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.
+
+class Solution {
+    public int firstUniqChar(String s) {
+        String[] St = s.split("");
+        ArrayList<String> a=new ArrayList<>(Arrays.asList(St));
+        for(int i=0;i<a.size();i++){
+            if((Collections.frequency(a,a.get(i)))==1){
+                return(i);
+            }
+        }
+       return -1; 
+    }
+}
