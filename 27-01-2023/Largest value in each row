@@ -1,0 +1,28 @@
+Given the root of a binary tree, return an array of the largest value in each row of the tree (0-indexed).
+class Solution {
+    public List<Integer> largestValues(TreeNode root) {
+        List<Integer> list=new ArrayList<>();
+        if(root==null){
+            return list;
+        }
+        Queue <TreeNode> q=new LinkedList<>();
+        q.offer(root);
+        while(!q.isEmpty()){
+            int x=Integer.MIN_VALUE;
+            int s=q.size();
+            for(int i=0;i<s;i++){
+                TreeNode cur=q.poll();
+                if(x<cur.val){
+                    x=cur.val;
+                }
+                if(cur.left!=null){
+                    q.add(cur.left);
+                }
+                if(cur.right!=null){
+                    q.add(cur.right);
+                }
+            }list.add(x);
+        }return list;
+        
+    }
+}
