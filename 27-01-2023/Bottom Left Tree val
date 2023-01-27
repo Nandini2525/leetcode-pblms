@@ -1,0 +1,26 @@
+Given the root of a binary tree, return the leftmost value in the last row of the tree.
+class Solution {
+    public int findBottomLeftValue(TreeNode root) {
+        int x=0;
+        if(root==null){
+            return 0;
+        }
+        Queue<TreeNode> q=new LinkedList<>();
+        q.add(root);
+        while(!q.isEmpty()){
+            int s=q.size();
+            for(int i=0;i<s;i++){
+            TreeNode cur=q.poll();
+            if(i==0){
+                x=cur.val;
+            }
+            if(cur.left!=null){
+                q.add(cur.left);
+            }
+            if(cur.right!=null){
+                q.add(cur.right);
+            }
+        }
+        }return x;   
+    }
+}
