@@ -1,0 +1,26 @@
+Given the root of a binary search tree and an integer k, return true if there exist two elements in the BST such that their sum is equal to k, or false otherwise.
+class Solution {
+    ArrayList<Integer>l=new ArrayList<>();
+    public boolean findTarget(TreeNode root, int k) {
+        if(root==null){
+            return false;
+        }
+        traversal(root);
+        for(int i=0;i<l.size()-1;i++){
+            for(int j=i+1;j<l.size();j++){
+                if(l.get(i)+l.get(j)==k){
+                    return true;
+                }
+            }
+        }return false;
+        
+    }
+    public void traversal(TreeNode root){
+        if(root==null){
+            return;
+        }
+        traversal(root.left);
+        l.add(root.val);
+        traversal(root.right);
+    }
+}
