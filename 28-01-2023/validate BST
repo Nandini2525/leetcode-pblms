@@ -1,0 +1,36 @@
+Given the root of a binary tree, determine if it is a valid binary search tree (BST).
+
+class Solution {
+    int c=0;
+    ArrayList<Integer> list=new ArrayList<>();
+    public boolean isValidBST(TreeNode root) {
+        if(root==null){
+            return false;
+        }
+        traversal(root);
+        if(list.size()==1){
+            return true;
+        }
+           for(int i=0;i<list.size()-1;i++){
+            if(list.get(i)==list.get(i+1)){
+                c=c+1;
+            }
+        }if(c==list.size()-1){
+            return false;
+        }
+        for(int i=0;i<list.size()-1;i++){
+            if(list.get(i)>=list.get(i+1)){
+                return false;
+            }
+        }return true;
+    }
+    public void traversal (TreeNode root)
+    {
+        if(root == null)
+            return;
+        traversal(root.left);
+        list.add(root.val);
+        traversal(root.right);
+
+    }
+    }
