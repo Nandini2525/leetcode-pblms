@@ -1,0 +1,19 @@
+class Solution {
+    public TreeNode sortedArrayToBST(int[] nums) {
+   if(nums.length==0){
+       return null;
+   }
+    TreeNode n=Ctree(nums , 0, nums.length-1);
+    return n;
+    }
+    public TreeNode Ctree(int[] nums,int s,int e){
+        if(s>e){
+            return null;
+        }
+        int l=(s+e)/2;
+        TreeNode r=new TreeNode(nums[l]);
+        r.left=Ctree(nums , s,l-1);
+        r.right=Ctree(nums, l+1,e);
+        return r;
+    }
+}
