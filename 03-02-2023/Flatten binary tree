@@ -1,0 +1,25 @@
+class Solution {
+    ArrayList<Integer> l= new ArrayList<>();
+    public void flatten(TreeNode root) {
+        if(root==null){
+            return;
+        }
+        traversal(root);
+        int i=1;
+        while(i<l.size()){
+            root.right=new TreeNode(l.get(i));
+            root.left=null;
+            root=root.right;
+            i++;
+        }
+        
+    }
+    public void traversal(TreeNode root){
+        if(root==null){
+            return ;
+        }
+        l.add(root.val);
+        traversal(root.left);
+        traversal(root.right);
+    }
+}
