@@ -1,0 +1,23 @@
+class Solution {
+    int c=0;
+    ArrayList<Integer> l=new ArrayList<>();
+    public void recoverTree(TreeNode root) {
+        if(root==null){
+            return ;
+        }
+        traversal(root);
+        Collections.sort(l);
+        recover(root);
+    }
+    public void traversal(TreeNode root){
+        if(root==null){
+            return;
+        }
+        traversal(root.left);
+        l.add(root.val);
+        traversal(root.right);
+    }
+    public void recover(TreeNode root){
+        if(root==null){
+            return;
+        }
