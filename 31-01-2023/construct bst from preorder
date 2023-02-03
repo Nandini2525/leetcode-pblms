@@ -1,0 +1,25 @@
+class Solution {
+    int k=0;
+    public TreeNode Ctree(int[] p , int s,int e){
+          if(s>e){
+            return null;
+        }
+        TreeNode root=new TreeNode(p[k++]);
+        int i=k;
+        while(i<p.length){
+            if(p[i]>root.val){
+                break;
+            }
+            i++;
+        }
+        root.left=Ctree(p,s+1,i-1);
+        root.right=Ctree( p,i,e);
+     return root;
+    }
+    public TreeNode bstFromPreorder(int[] preorder) {
+      int start=0;
+      int end=preorder.length-1;
+      TreeNode n=Ctree(preorder,start,end); 
+      return n;      
+    }
+}
