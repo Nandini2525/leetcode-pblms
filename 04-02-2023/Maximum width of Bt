@@ -1,0 +1,39 @@
+class Pair{
+     int offset;
+     TreeNode root;
+     Pair(TreeNode root,int offset){
+         this.root=root;
+         this.offset=offset;
+     }
+ }
+class Solution {
+    int w=0;
+    int f;
+    int l;
+    public int widthOfBinaryTree(TreeNode root) {
+        Queue<Pair> q= new LinkedList<>();
+        q.add(new Pair(root,1));
+        while(!q.isEmpty()){
+            int s=q.size();
+            for(int i=0;i<s;i++){
+                Pair p=q.poll();
+                TreeNode cur=p.root;
+                int x=p.offset;
+                if(i==0){
+                    f=p.offset;
+                }
+                if(i==s-1){
+                    l=p.offset;
+                }
+            if(cur.left!=null){
+                q.add(new Pair(cur.left,2*x));
+            }
+            if(cur.right!=null){
+                q.add(new Pair(cur.right,2*x+1));
+            }
+            }w=Math.max(w,(l-f)+1);
+        }
+        return w;
+        
+    }
+}
