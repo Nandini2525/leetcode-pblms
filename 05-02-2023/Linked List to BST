@@ -1,0 +1,21 @@
+class Solution {
+    ArrayList<Integer> l= new ArrayList<>();
+    public TreeNode Ctree(List<Integer> l , int s, int e){
+        if(s>e){
+            return null;
+        }
+        int m=(s+e)/2;
+        TreeNode root=new TreeNode(l.get(m));
+        root.left=Ctree(l,s,m-1);
+        root.right=Ctree(l,m+1,e);
+        return root;
+    }
+    public TreeNode sortedListToBST(ListNode head) {
+        while(head!=null){
+            l.add(head.val);
+            head=head.next;
+        }
+         TreeNode n=Ctree(l,0,l.size()-1);
+         return n;
+    }
+}
