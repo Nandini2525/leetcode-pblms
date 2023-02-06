@@ -1,0 +1,22 @@
+class Solution {
+    int val;
+    public boolean isUnivalTree(TreeNode root) {
+        if(root==null){
+            return false;
+        }
+        val=root.val;
+        boolean h=traversal(root);
+        return h;
+    }
+    public boolean traversal(TreeNode root){
+        if(root==null){
+            return true;
+        }
+       if(root.val!=val){
+           return false;
+       }  
+       boolean left=traversal(root.left);
+       boolean right=traversal(root.right);
+       return left && right;
+        }
+}
