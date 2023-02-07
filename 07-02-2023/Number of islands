@@ -1,0 +1,49 @@
+class Pair{
+    int row;
+    int col;
+    Pair(int row,int col){
+        this.row=row;
+        this.col=col;
+    }
+}
+class Solution {
+    Queue <Pair> q=new LinkedList<>();
+    int n,m;
+    int x[]={-1,0,1,0};
+    int y[]={0,1,0,-1};
+    public int numIslands(char[][] grid) {
+        m=grid.length;
+        n=grid[0].length;
+        int k=0;
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j]=='1'){
+                    grid[i][j]='0';
+                    q.add(new Pair(i,j));
+                    k++;
+                    bfs(grid);
+                }
+            }
+        }return k;
+    }
+            public void bfs(char[][] grid){
+                    while(!q.isEmpty()){
+                        int s=q.size();
+                        Pair p=q.poll();
+                        int a=p.row;
+                        int b=p.col;
+                        for(int i=0;i<4;i++){
+                        int r=a+x[i];
+                        int c=b+y[i];
+                        if(r>=0 && c>=0 && r<m && c<n){
+                            if(grid[r][c]=='1'){
+                                grid[r][c]='0';
+                                q.add(new Pair(r,c));
+                            }
+                        }else{
+                            continue;
+                        }
+                    }
+                    }
+            }
+}
