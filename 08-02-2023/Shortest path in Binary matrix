@@ -1,0 +1,49 @@
+class Pair{
+    int row;
+    int col;
+    int c1;
+    Pair(int row,int col,int c1){
+        this.row=row;
+        this.col=col;
+        this.c1=c1;
+    }
+}
+class Solution {
+    int m,n;
+    int z=0;
+    int x[]={-1,-1,-1,0,1,1,1,0};
+    int y[]={-1,0,1,1,1,0,-1,-1};
+    Queue<Pair> q=new LinkedList<>();
+    public int shortestPathBinaryMatrix(int[][] grid) {
+        int m=grid.length;
+        int n=grid[0].length;
+        if(grid[0][0]==0  && grid[grid.length-1][grid.length-1]==0){
+        q.add(new Pair(0,0,1));
+        grid[0][0]=2;
+        while(!q.isEmpty()){
+            int s=q.size();
+                Pair p=q.poll();
+                int a=p.row;
+                int b=p.col;
+                int k1=p.c1;
+                if( a==m-1 && b==n-1){
+                                return k1;
+                            }
+                for(int i=0;i<8;i++){
+                    int r=a+x[i];
+                    int c=b+y[i];
+                    if(r>=0 && c>=0 && r<m && c<n){
+                        if(grid[r][c]==0){
+                            grid[r][c]=2;
+                            q.add(new Pair(r,c,k1+1));
+                        }
+                    }
+                }
+        }return -1;
+        }
+        else{
+            return -1;
+        }
+
+}
+}
